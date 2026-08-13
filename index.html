@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="سكنة - منصة بسيطة للعثور على السكن الطلابي المناسب.">
+  <title>سكنة | سكنك الجامعي بسهولة</title>
+  <link rel="stylesheet" href="css/style.css">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="سكنة | سكن طلابي بسهولة">
+<meta property="og:description" content="ابحث عن سكن طلابي مناسب لجامعتك ومنطقتك.">
+<meta property="og:image" content="favicon.svg">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html">سكنة</a>
+    <nav>
+      <a href="properties.html">كل السكن</a>
+      <a href="list-property.html">اعرض شقتك</a>
+      <a href="about.html">عن المنصة</a>
+    </nav>
+    <a class="btn btn-small" href="https://wa.me/201146611925" target="_blank">تواصل معنا</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge">🏠 سكن طلابي في مكان واحد</span>
+      <h1>دور على سكنك الجامعي بسهولة</h1>
+      <p>شقق وسكن مناسب للطلاب، بصور وتفاصيل واضحة، وتواصل مباشر معنا عشان نساعدك توصل لصاحب السكن.</p>
+
+      <div class="search-box">
+        <div class="field">
+          <label>المحافظة</label>
+          <select id="homeGovernorate"><option value="">كل المحافظات</option></select>
+        </div>
+        <div class="field">
+          <label>الجامعة</label>
+          <select id="homeUniversity"><option value="">كل الجامعات</option></select>
+        </div>
+        <div class="field">
+          <label>المنطقة</label>
+          <select id="homeArea"><option value="">كل المناطق</option></select>
+        </div>
+        <button class="btn" id="homeSearch">ابحث عن سكن</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">اختيارات متاحة</span>
+        <h2>أحدث السكن</h2>
+      </div>
+      <a class="text-link" href="properties.html">عرض الكل ←</a>
+    </div>
+    <div class="property-grid" id="featuredProperties"></div>
+  </section>
+
+  <section class="container section">
+    <div class="cta">
+      <div>
+        <h2>عندك شقة مناسبة للطلاب؟</h2>
+        <p>تواصل معنا وابعت صور الشقة وبياناتها، وإحنا نضيفها على المنصة بعد مراجعة البيانات.</p>
+      </div>
+      <a class="btn btn-light" href="list-property.html">اعرض شقتك</a>
+    </div>
+  </section>
+</main>
+
+<section class="contact-strip">
+      <div>
+        <strong>تواصل معانا</strong>
+        <span>للاستفسار عن السكن أو عرض شقتك</span>
+      </div>
+      <div class="contact-links">
+        <a href="tel:+201146611925">📞 01146611925</a>
+        <a href="https://wa.me/201146611925" target="_blank">💬 واتساب</a>
+        <a href="https://www.facebook.com/Ma.Mo7amed" target="_blank" rel="noreferrer">ⓕ فيسبوك</a>
+      </div>
+    </section>
+    <footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 سكنة</span>
+    <span>سكنك الجامعي في مكان واحد.</span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/main.js"></script>
+<a class="floating-whatsapp" href="https://wa.me/201146611925" target="_blank" aria-label="تواصل معنا على واتساب">💬<span>واتساب</span></a>
+</body>
+</html>

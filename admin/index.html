@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لوحة التحكم | سكنة</title><link rel="stylesheet" href="../css/style.css">
+<style>
+.admin-wrap{min-height:100vh}.admin-header{background:#0f172a;color:#fff;padding:16px 0}.admin-nav{display:flex;align-items:center;justify-content:space-between;gap:15px}.admin-nav .logo{color:#5eead4}.admin-main{padding:35px 0}.admin-grid{display:grid;grid-template-columns:300px 1fr;gap:20px}.admin-card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:20px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#f8fafc;border-radius:14px;padding:18px}.stat b{display:block;font-size:28px;margin-top:5px}.admin-table{width:100%;border-collapse:collapse}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:right;font-size:14px}.admin-form{display:grid;gap:12px}.admin-form input,.admin-form textarea,.admin-form select{width:100%;border:1px solid #cbd5e1;border-radius:11px;padding:11px;outline:0}.admin-form textarea{min-height:110px;resize:vertical}.admin-actions{display:flex;gap:8px;flex-wrap:wrap}.danger{background:#dc2626}.danger:hover{background:#b91c1c}.hidden{display:none!important}.login-box{max-width:430px;margin:80px auto}.admin-list{display:grid;gap:12px}@media(max-width:850px){.admin-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.admin-table{display:block;overflow:auto;white-space:nowrap}}
+</style>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="سكنة | سكن طلابي بسهولة">
+<meta property="og:description" content="ابحث عن سكن طلابي مناسب لجامعتك ومنطقتك.">
+<meta property="og:image" content="../favicon.svg">
+<meta property="og:url" content="">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<div class="admin-wrap">
+<header class="admin-header"><div class="container admin-nav"><a class="logo" href="../index.html">سكنة</a><div><span id="adminEmail"></span> <button class="btn btn-small" id="logoutBtn">خروج</button></div></div></header>
+<main class="container admin-main">
+<section id="loginSection" class="admin-card login-box">
+  <h1>دخول الأدمن</h1><p class="muted">هذه الصفحة خاصة بإدارة الشقق.</p>
+  <form id="loginForm" class="admin-form">
+    <div class="field"><label>البريد الإلكتروني</label><input id="email" type="email" required></div>
+    <div class="field"><label>كلمة المرور</label><input id="password" type="password" required></div>
+    <button class="btn">دخول</button><p id="loginMsg" class="muted"></p>
+  </form>
+</section>
+
+<section id="dashboard" class="hidden">
+  <div class="section-head"><div><span class="eyebrow">إدارة المنصة</span><h1>لوحة التحكم</h1></div><button class="btn" id="newPropertyBtn">+ إضافة شقة</button></div>
+  <div class="stats">
+    <div class="stat">الشقق المتاحة<b id="availableCount">0</b></div>
+    <div class="stat">الشقق المكتملة<b id="fullCount">0</b></div>
+    <div class="stat">إجمالي الشقق<b id="totalCount">0</b></div>
+  </div>
+  <div class="admin-grid" style="margin-top:20px">
+    <div class="admin-card">
+      <h2>إضافة / تعديل شقة</h2>
+      <form id="propertyForm" class="admin-form">
+        <input type="hidden" id="propertyId">
+        
+        <div class="field"><label>المحافظة</label><input id="governorate" placeholder="مثال: سوهاج" required></div>
+        <div class="field"><label>المنطقة</label><input id="area" placeholder="مثال: مدينة ناصر" required></div>
+        <div class="field"><label>الجامعة</label><input id="university" placeholder="مثال: جامعة سوهاج" required></div>
+        <div class="field"><label>السعر للفرد شهريًا</label><input id="price" type="number" min="0" required></div>
+        <div class="two-fields">
+          <div class="field"><label>عدد الغرف</label><input id="rooms" type="number" min="1" required></div>
+          <div class="field"><label>عدد السراير</label><input id="beds" type="number" min="1" required></div>
+        </div>
+        <div class="field"><label>عدد السراير المتاحة حاليًا</label><input id="availableBeds" type="number" min="0" required></div>
+        <div class="field"><label>المميزات (افصل بينهم بفاصلة)</label><input id="amenities" placeholder="مفروشة, Wi-Fi, تكييف"></div>
+        <div class="field"><label>الوصف</label><textarea id="description"></textarea></div>
+        <div class="field"><label>حالة الشقة</label><select id="status"><option value="available">متاحة</option><option value="full">مكتملة</option><option value="hidden">مخفية</option></select></div>
+        <div class="field">
+      <label>صور الشقة</label>
+      <input id="imageFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+      <small class="muted">اختار كل صور الشقة مرة واحدة.</small>
+      <div id="imagePreview" class="upload-preview"></div>
+    </div>
+    <div class="field">
+      <label>فيديو الشقة</label>
+      <input id="videoFiles" type="file" accept="video/mp4,video/webm,video/quicktime" multiple>
+      <small class="muted">يمكن رفع فيديو حتى 50MB.</small>
+      <div id="videoPreview" class="upload-preview"></div>
+      <div id="uploadStatus" class="upload-status hidden">جاري الرفع...</div>
+      <div class="upload-progress-wrap"><div id="uploadProgress" class="upload-progress"></div></div>
+    </div>
+        <div class="admin-actions"><button class="btn" id="saveBtn" type="submit">حفظ الشقة</button><button class="btn btn-outline" type="button" id="cancelEdit">مسح</button></div>
+        <p id="formMsg" class="muted"></p>
+      </form>
+    </div>
+    <div class="admin-card">
+      <h2>الشقق</h2>
+      <div class="admin-tools">
+        <input id="adminSearch" placeholder="ابحث بالمحافظة أو المنطقة أو الجامعة...">
+        <select id="adminStatusFilter"><option value="">كل الحالات</option><option value="available">متاحة</option><option value="full">مكتملة</option><option value="hidden">مخفية</option></select>
+      </div>
+      <div id="propertyList" class="admin-list"></div>
+    </div>
+  </div>
+</section>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase-config.js"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="admin.js"></script>
+</body></html>
